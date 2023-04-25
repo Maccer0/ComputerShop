@@ -1,0 +1,9 @@
+﻿@model string[]
+@{
+}
+
+<td style="width: 150px">
+    <div class="btn-group">
+        <a asp-action="Assign" asp-controller="@Model[0]" class="btn btn-primary" asp-route-id="@Model[1]">Assign</a>
+    </div>
+</td>

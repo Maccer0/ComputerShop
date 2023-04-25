@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ComputerShop.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">User List</h2>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info">&nbsp; New User Type</a>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>Name</th>
+            <th>Username</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.UserName</td>
+                @if (item.LockoutEnd > DateTime.Now && item.LockoutEnd != null)
+                {
+                    <td class="text-danger">Inactive</td>
+                    <td></td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Activate" class="btn btn-success" asp-route-id="@item.Id">Active</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-success">Active</td>
+                    <td>
+                        @{
+                            string[] arr = new string[2];
+                            arr[0] = "User";
+                            arr[1] = item.Id + "";
+                        }
+                        <partial name="_UserButtonPartial" model="@arr" />
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts
+{
+    <script src="//cdn.jsdeliver.net/np./alertifyjs@Int16.11.2/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        var save = '@TempData["save"]';
+        if(save != '')
+        {
+            alertify.success(save);
+        }
+
+    </script>
+} 

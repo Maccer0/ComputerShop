@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ComputerShop.Models.Tag>
+
+@{
+    ViewData["Title"] = "Tag";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Tag List</h2>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info">&nbsp; New Tag</a>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.TagName)
+            </th>
+            <th></th>
+            <th></th>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.TagName</td>
+                <td>
+                    @{
+                        string[] arr = new string[2];
+                        arr[0] = "SpecialTag";
+                        arr[1] = item.Id + "";
+                    }
+                    <partial name="_ButtonPartial" model="@arr" />
+                </td>
+            </tr>
+        }
+            </tr>
+        </table>
+    </div>

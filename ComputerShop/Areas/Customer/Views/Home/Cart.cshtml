@@ -1,0 +1,54 @@
+﻿@using ComputerShop.Models
+@model List<Product>
+
+@{
+	ViewData["Title"] = "Cart Page";
+	int count = 1;
+}
+
+<h1>Your Cart</h1>
+<br/>
+<div class="row">
+	<table class="table table-bordered align-middle text-center">
+		<thead>
+			<tr>
+				<th>Image</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Product Type</th>
+				<th>Manufacturer</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="align-middle">
+			@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							<img src="~/@item.Image" width="200px" height="150px" />
+						</td>
+						<td>@item.Name</td>
+						<td>$@item.Price</td>
+						<td>@item.ProductType.ProductType</td>
+						<td>@item.ProductManufacturer</td>
+						<td>
+							<a class="btn btn-danger" asp-action="Remove"  asp-controller="Home" asp-route-id="@item.Id">Remove</a>
+						</td>
+					</tr>
+				}
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="col-6">
+		<a class="btn btn-success" asp-action="Index" asp-controller="Home">Back to Home</a>
+	</div>
+	<div class="col-6 text-right">
+		<h3>Total Amount @Model.Count</h3>
+		<h3>Grand total: $@Model.Sum(c => c.Price)</h3>
+		@if(Model.Sum(c => c.Price) > 0)
+		{
+			<a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="btn btn-info">Proceed to checkout</a>
+		}
+	</div>
+</div>

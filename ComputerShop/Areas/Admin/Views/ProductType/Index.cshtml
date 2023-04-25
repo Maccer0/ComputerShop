@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ComputerShop.Models.ProductTypes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product Type List</h2>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info">&nbsp; New Product Type</a>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.ProductType)
+            </th>
+            <th></th>
+            <th></th>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ProductType</td>
+                <td>
+                    @{
+                        string[] arr = new string[2];
+                        arr[0] = "ProductType";
+                        arr[1] = item.Id + "";
+                    }
+                    <partial name="_ButtonPartial" model="@arr" />
+                </td>
+            </tr>
+        }
+            </tr>
+        </table>
+    </div>

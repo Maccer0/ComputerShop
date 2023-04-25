@@ -1,0 +1,49 @@
+﻿@model ComputerShop.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Add New User";
+}
+<br />
+
+<h1>Register new user</h1>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+
+            <h3>@ViewBag.message</h3>
+
+            <div class="form-floating mb-3">
+                <input asp-for="UserName" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="UserName" class="form-label">Username</label>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" autocomplete="email" aria-required="true" type="email"/>
+                <label asp-for="Email" class="form-label">E-mail</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="PasswordHash" class="form-control" autocomplete="" aria-required="true" type="password" />
+                <label asp-for="PasswordHash" class="form-label">Password</label>
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" />
+                <label asp-for="FirstName" class="form-label">First name</label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-required="true" />
+                <label asp-for="LastName" class="form-label">Last name</label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div>
+                <button type="submit" class="w-100 btn btn-lg btn-primary" value="Register">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
